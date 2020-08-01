@@ -13,3 +13,15 @@ services:
     volumes:
       - /home/app/node_modules
       - .:/home/app
+
+  tests:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/app/node_modules
+      - .:/home/app
+    command: ["npm", "run", "test"]

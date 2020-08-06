@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export class Fib extends Component {
+class Fib extends Component {
   state = {
     seenIndexes: [],
     values: {},
@@ -13,7 +13,6 @@ export class Fib extends Component {
     this.fetchIndexes();
   }
 
-
   async fetchValues() {
     const values = await axios.get('/api/values/current');
     this.setState({ values: values.data });
@@ -21,11 +20,14 @@ export class Fib extends Component {
 
   async fetchIndexes() {
     const seenIndexes = await axios.get('/api/values/all');
-    this.setState({ seenIndexes: seenIndexes.data });
+    this.setState({
+      seenIndexes: seenIndexes.data
+    });
   }
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault();
+
     await axios.post('/api/values', {
       index: this.state.index
     });
@@ -51,7 +53,7 @@ export class Fib extends Component {
   }
 
   render() {
-    return(
+    return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>Enter your index:</label>
@@ -63,10 +65,10 @@ export class Fib extends Component {
         </form>
 
         <h3>Indexes I have seen:</h3>
-        { this.renderSeenIndexes() }
+        {this.renderSeenIndexes()}
 
-        <h3>Calculated values:</h3>
-        { this.renderValues() }
+        <h3>Calculated Values:</h3>
+        {this.renderValues()}
       </div>
     );
   }

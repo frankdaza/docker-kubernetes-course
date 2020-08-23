@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: client-pod
   labels:
-    components: web
+    component: web
 spec:
   containers:
     - name: client

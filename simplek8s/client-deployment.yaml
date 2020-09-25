@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: client-deployment
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       component: web
@@ -16,4 +16,4 @@ spec:
         - name: client
           image: stephengrider/multi-client
           ports:
-            - containerPort: 9999
+            - containerPort: 3000
